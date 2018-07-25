@@ -19,7 +19,7 @@ module  MemberReminder
 
     attr_reader :member_yaml
 
-    def initialize(path)
+    def initialize(path = DEFAULT_PATH)
       file = open(path || DEFAULT_PATH)
       @member_yaml = YAML.load(file.read)    
     end
