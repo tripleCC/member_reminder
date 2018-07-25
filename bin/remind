@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require "member_reminder"
+require "optparse"
+
+
+options = {}
+
+OptionParser.new do |opts|
+	opts.banner = "钉钉提醒组员"
+
+	opts.on('-n NAME', '--name NAME', '组员花名，多人可用 `,` 分割，如 A,B') do |value|
+		options[:name] = value
+	end
+
+	opts.on('-c CONTENT', '--content CONTENT', '提醒内容') do |value|
+		options[:content] = value
+  end	
+  
+  opts.on('-p PATH', '--path PATH', 'YAML 文件路径') do |value|
+		options[:path] = value
+	end	
+end.parse!
+
+raise OptionParser::MissingArgument, '缺少 -name 参数' if options[:name].nil?
+raise OptionParser::MissingArgument, '缺少 -content 参数' if options[:content].nil?
+
+bank = MemberReminder::MemberBank.new(options[:path])
+names = options[:name].split(',')
+remind_members = bank.members.select { |m| names.include?(m.name) }
+bank.post(remind_members, options[:content])
