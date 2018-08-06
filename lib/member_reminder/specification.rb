@@ -4,7 +4,7 @@ module Pod
 	class Specification
 		def member
 			@member ||= begin
-				bank = MemberReminder::MemberBank.new('./boss_keeper_members.yml')
+				bank = MemberReminder::MemberBank.new
 				member = authors.keys.map do |name|
 				 	bank.members.find do |member|
 				 		(Array(member.name) + Array(member.alias_names)).map(&:pinyin).include?(name)
