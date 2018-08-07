@@ -7,7 +7,7 @@ module Pod
 				bank = MemberReminder::MemberBank.new
 				member = authors.keys.map do |name|
 				 	bank.members.find do |member|
-				 		(Array(member.name) + Array(member.alias_names)).map(&:pinyin).include?(name)
+				 		(Array(member.name) + Array(member.alias_names)).map(&:pinyin).include?(name.pinyin.downcase)
 				 	end
 				end.compact.first
 				member
