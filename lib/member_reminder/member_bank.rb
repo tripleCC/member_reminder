@@ -4,6 +4,8 @@ require 'member_reminder/string_pinyin'
 
 module  MemberReminder
   class MemberBank
+    using StringPinyin
+    
     class Team
       attr_accessor :name
       attr_accessor :ding_token
@@ -26,7 +28,6 @@ module  MemberReminder
     end
 
     def member_of_spec(spec)
-      using StringPinyin
       member = spec.authors.keys.map do |name|
         members.find do |member|
           (Array(member.name) + Array(member.alias_names)).map(&:pinyin).include?(name.pinyin.downcase)
