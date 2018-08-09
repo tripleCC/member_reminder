@@ -1,7 +1,6 @@
 require "member_reminder/version"
 require "member_reminder/ding_talk"
 require "member_reminder/member_bank"
-require "member_reminder/specification"
 
 module MemberReminder
 	class MemberBank

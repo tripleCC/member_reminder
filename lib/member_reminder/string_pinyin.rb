@@ -1,7 +1,9 @@
 require 'chinese_pinyin'
 
-class String
-	def pinyin
-		Pinyin.t(dup, splitter: '').downcase
+module StringPinyin
+	refine String do
+		def pinyin
+			Pinyin.t(dup, splitter: '').downcase
+		end
 	end
 end
