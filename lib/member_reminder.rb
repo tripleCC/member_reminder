@@ -7,7 +7,7 @@ module MemberReminder
 		include DingTalk
 
 		def post(members, content)
-			members.group_by { |m| m.team.ding_token }.each do |token ,ms|
+			members.compact.group_by { |m| m.team.ding_token }.each do |token ,ms|
 				super token, content, ms.map(&:mobile)
 			end
 		end

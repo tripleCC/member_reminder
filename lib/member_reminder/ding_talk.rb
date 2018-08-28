@@ -19,7 +19,8 @@ module MemberReminder
                     "isAtAll": false
                 }
               }']
-      system curl
+      p curl
+      # system curl
     end
   end
 end
