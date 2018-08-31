@@ -2,7 +2,7 @@ module MemberReminder
   module DingTalk
     def post(token, content, mobiles = [])
       mobiles = Array(mobiles)
-      token ||= bc0c9e48cda8f2b4c1d37a033cdbc0cd35e42fbf89b789732a3370c0b2bc314e
+      token ||= 'bc0c9e48cda8f2b4c1d37a033cdbc0cd35e42fbf89b789732a3370c0b2bc314e'
       curl = %Q[
             curl 'https://oapi.dingtalk.com/robot/send?access_token=#{token}' \
                -H 'Content-Type: application/json' \
@@ -20,6 +20,25 @@ module MemberReminder
                 }
               }']
       # p curl
+      system curl
+    end
+
+    def post_markdown(token, title, content) 
+      token ||= 'bc0c9e48cda8f2b4c1d37a033cdbc0cd35e42fbf89b789732a3370c0b2bc314e'
+      curl = %Q[
+            curl 'https://oapi.dingtalk.com/robot/send?access_token=#{token}' \
+               -H 'Content-Type: application/json' \
+               -d '
+              {
+                "msgtype": "markdown", 
+                "markdown": {
+                    "title" : "#{title}",
+                    "text": "#{content}",
+                 },
+                 "at": {
+                    "isAtAll": true
+                }
+              }']
       system curl
     end
   end
