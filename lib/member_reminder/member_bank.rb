@@ -18,7 +18,7 @@ module  MemberReminder
       attr_accessor :mobile
     end
 
-    DEFAULT_PATH = 'http://git.2dfire-inc.com/ios/ci-yaml-shell/raw/master/boss_keeper_members.yml'
+    DEFAULT_PATH = 'http://git.2dfire.net/ios/ci-yaml-shell/raw/master/boss_keeper_members.yml'
 
     attr_reader :member_yaml
 
