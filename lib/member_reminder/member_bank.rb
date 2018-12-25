@@ -27,13 +27,17 @@ module  MemberReminder
       @member_yaml = YAML.load(file.read)    
     end
 
-    def member_of_spec(spec)
-      member = spec.authors.keys.map do |name|
+    def member_of_authors(authors)
+      member = authors.keys.map do |name|
         members.find do |member|
           (Array(member.name) + Array(member.alias_names)).map(&:pinyin).include?(name.pinyin.downcase)
         end
       end.compact.first
       member
+    end
+
+    def member_of_spec(spec)
+      member_of_authors(spec.authors)
     end
 
     def members
